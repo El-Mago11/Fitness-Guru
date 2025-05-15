@@ -7,7 +7,8 @@ import headerBg from '../assets/header-bg-img.webp';
 
 const Home = () => {
   return (
-    <div
+   <section className='home-section'>
+     <div
     id='Home'
     className="relative w-full h-screen bg-cover bg-center flex items-center justify-center bg-img"
     style={{
@@ -18,22 +19,24 @@ const Home = () => {
       }}
   >
     
-
-    <div className="relative z-10 text-white bottom-4  max-w-3xl px-4 home-text left-60" >
-    <Swiper
-  className="custom-swiper-height"
-  modules={[Autoplay, Navigation, Pagination]}
-  autoplay={{ delay: 3000 }}
-  loop={true}
-  speed={800}
-  slidesPerView={1}
-  pagination={{ type: 'fraction' }}
-  navigation={{
-    nextEl: '.custom-next',
-    prevEl: '.custom-prev',
-    renderCustom: (swiper, current, total) => `${current} / ${total}`,
-  }}
->
+    <div className='flex gap-100 '>
+      <div></div>
+       
+    <div className="relative z-10 text-white bottom-4 swiper-container  max-w-3xl px-4 home-text left-0" >
+       <Swiper
+              className="custom-swiper-height"
+         modules={[Autoplay, Navigation, Pagination]}
+           autoplay={{ delay: 3000 }}
+           loop={true}
+         speed={800}
+               slidesPerView={1}
+         pagination={{ type: 'fraction' }}
+            navigation={{
+         nextEl: '.custom-next',
+          prevEl: '.custom-prev',
+              renderCustom: (swiper, current, total) => `${current} / ${total}`,
+         }}
+     >
 
         <SwiperSlide>
             <div className='home-carousel-text'>
@@ -69,7 +72,10 @@ const Home = () => {
      <div className="custom-swiper-indicator-container">
         </div>
     </div>
+    </div>
+
   </div>
+   </section>
 );
 };
 

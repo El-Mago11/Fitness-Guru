@@ -7,6 +7,11 @@
   font-family: "Poppins", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* optional, gives spacing if you have a fixed navbar */
+}
+
 :root {
   /*Font size*/
   --font-size-s: 0.9rem;
@@ -26,6 +31,47 @@
   --gray-colour: #B0BEC5; 
 }
 
+/* PRELOADER */
+/* index.css */
+
+/* Preloader styles */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #000; /* or your desired background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+.preloader.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    
+  }
+  to {
+    opacity: 1;
+    
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease-in-out both;
+}
+
+
 /* NavBar */
 .navbar {
   /* background-color:transparent; */
@@ -38,8 +84,8 @@
 }
 .nav-links-container{
   position: relative;
-  left: 50px;
-  padding-left:30px ;
+   /* left: -50px; */
+ /* padding-left:30px ; */
 }
 .nav-menu{
  display: flex; 
@@ -137,50 +183,50 @@ ul li:hover .dropdown-menu {
   padding: 10px;
 }
 /*HOME  */
-.bg-img{
+.bg-img {
   background-image: url(assets/header-bg-img.webp);
   background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.home-text{
+.home-text {
   position: relative;
   text-transform: uppercase;
 }
 
-.home-carousel-text{
+.home-carousel-text {
   position: relative;
- top: 70px;
+  top: 70px;
   left: 120px;
+  text-align: left;
 }
 
-.carousel-h1{
-  font-size:68px;
-	text-transform:uppercase;
-	font-weight:700;
-	background: -webkit-linear-gradient(#8e56fd, #eb7a98);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.carousel-h1 {
+  font-size: 68px;
+  text-transform: uppercase;
+  font-weight: 700;
+  background: -webkit-linear-gradient(#8e56fd, #eb7a98);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.carousel-p{
+.carousel-p {
   display: block;
-	margin: 20px auto;
-	text-align: left;
+  margin: 20px auto;
+  text-align: left;
   margin-left: 0;
   width: 500px;
-	font-size: 15px;
-	color: rgba(255, 255, 255, 0.8);
-	font-weight: 400;
-	letter-spacing:0.5px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+  letter-spacing: 0.5px;
   text-transform: capitalize;
 }
-/* Swiper */
-/* Make the Swiper taller */
+
 .custom-swiper-height {
   margin-top: 10px;
-  height: 480px; /* Adjust based on your content */
+  height: 480px;
   display: flex;
   align-items: center;
 }
@@ -191,7 +237,6 @@ ul li:hover .dropdown-menu {
   justify-content: center;
 }
 
-/* Custom pagination below the Swiper */
 .custom-swiper-indicator-container {
   position: absolute;
   bottom: 20px;
@@ -216,32 +261,25 @@ ul li:hover .dropdown-menu {
   transform: scale(1.05);
 }
 
-.btns{
+.btns {
   background-image: linear-gradient(to right, #9258f9, #c253db, #dc58c0, #e767aa, #e8799b);
-	width: 180px;
-	text-align: center;
-	display: block;
-	padding: 10px 0;
-	border: 1px solid transparent;
-	cursor: pointer;
-	border-radius: 25px;
-	transition: 0.5s all ease;
-	color: #fff;
-	text-decoration: none;
+  width: 180px;
+  text-align: center;
+  display: block;
+  padding: 10px 0;
+  border: 1px solid transparent;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: 0.5s all ease;
+  color: #fff;
+  text-decoration: none;
 }
-.btns:hover{
-  /* border-top: 1px solid #9258f9;
-	border-left: 1px solid #c253db;
-	border-bottom: 1px solid #dc58c0;
-	border-right: 1px solid #e8799b; */
-	background-image: linear-gradient(to right,#00c9a7, #00f0ff,  #78ffd6);
+
+.btns:hover {
+  background-image: linear-gradient(to right, #00c9a7, #00f0ff, #78ffd6);
   box-shadow: 0px 0px 15px #00c9a7;
-
-
-  
-	text-decoration: none;
-	/* background: none; */
-	transition: 0.5s all ease;
+  text-decoration: none;
+  transition: 0.5s all ease;
 }
 
 /* ABOUT */
@@ -646,10 +684,6 @@ div#myBtnContainer .btn.active {
   box-shadow: 0px 0px 15px #7E56D1;
 }
 
-
-.football-image{
-font-size: 30px;
-}
 
 /* Pricing */
 .pricing-section{
@@ -1090,4 +1124,111 @@ input.card-input {
  border-top: 1px solid;
  padding: 20px;
  margin-left: 50px;
+}
+ 
+
+/* Mobile and small screens (max width 480px) */
+@media screen and (max-width: 768px) {
+  .section-paragraph{
+    width: 60%;
+  }
+
+
+  /* HOME */
+  .home-carousel-text {
+    text-align: center;
+  }
+
+  .carousel-h1 {
+    text-align: left;
+    width: 50%;
+    font-size: 2.5rem; /* Reduce font size on tablets */
+  }
+
+  .carousel-p {
+    width: 50px; /* Make the paragraph width 90% of screen width */
+    font-size: 14px; /* Reduce the font size for tablets */
+  }
+
+  .btns {
+    width: 150px; /* Reduce button size for tablets */
+    font-size: 14px; /* Adjust font size of the button */
+  }
+  .custom-swiper-height{
+    width: 100%;
+    
+  }
+  .swiper-container{
+      width: 100%;
+      justify-items: center;
+      left: -0px;
+  }
+
+  /* About */
+  .about-container{
+    display: flex;
+    flex-direction: column;
+  }
+  .about-paragraph{
+    width: 60%;
+  }
+
+  .class-group-1 ,.class-group-2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+  }
+
+  /* Events */
+  .event1{
+    padding: 10px;
+  }
+
+  .footer-section{
+    margin-top: 300px;
+  }
+
+ 
+}
+
+@media screen and (max-width: 480px) {
+  /* For small screens, like phones */
+
+  .nav-links{
+    font-size: 18px;
+  }
+  .home-carousel-text {
+    top: 30px; /* Reduce the top space for phones */
+    left: 10px; /* Make it closer to the edge of the screen */
+    text-align: center;
+  }
+
+  .carousel-h1 {
+    text-align: left;
+    font-size: 1.75rem; /* Reduce the heading font size on phones */
+  }
+
+  .carousel-p {
+    width: 45%; /* Ensure the text takes the full width */
+    font-size: 12px; /* Further reduce font size */
+  }
+
+  .btns {
+    width: 120px; /* Smaller button size */
+    font-size: 12px; /* Smaller font size for buttons */
+  }
+
+  /* Events */
+   .event-description{
+    position: relative;
+    left:-29%;
+  }
+  .other-links{
+    justify-items: center;
+ 
+  }
+
+  .call{
+margin-left: 0px;  }
 }

@@ -2,133 +2,121 @@ import React, { useState, useEffect, useRef } from "react";
 import { assets } from "../assets/assets";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faCaretDown, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { motion } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false); // Track scroll state
-  const [lastScrollY, setLastScrollY] = useState(0); // To track last scroll position
-  const navbarRef = useRef(null); // Reference for the navbar element
+  const [scrolled, setScrolled] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const navbarRef = useRef(null);
+  const menuRef = useRef(null);
+  const containerRef = useRef(null);
 
   const toggleMenu = () => setIsOpen((prev) => !prev);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 50);
 
-      // Detect scrolling down or up
-      if (currentScrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-
-      // Hide the navbar when scrolling down and show when scrolling up
       if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        // Scrolling down
-        navbarRef.current.style.transform = "translateY(-100%)"; // Move up
+        navbarRef.current.style.transform = "translateY(-100%)";
       } else {
-        // Scrolling up
-        navbarRef.current.style.transform = "translateY(0)"; // Move back down
+        navbarRef.current.style.transform = "translateY(0)";
       }
 
       setLastScrollY(currentScrollY);
     };
 
+    const handleClickOutside = (event) => {
+      if (
+        isOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        !navbarRef.current.contains(event.target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
-    
-    // Cleanup the event listener
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]); // Depend on lastScrollY to detect direction change
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen, lastScrollY]);
 
   return (
-    <div className="overflow-x-hidden-hidden">
-      <div
-        className={`flex flex-row navbar transition-all duration-200 ${
-          scrolled ? "bg-[#262626]" : "bg-transparent"
-        }`} // Change background to #262626 when scrolling
-        ref={navbarRef} // Reference for navbar
-        style={{ transition: "transform 0.5s ease-in-out" }} // Smooth transition for hiding/showing
-      >
-        <div className="w-20 nav-title">
-          <img src={assets.logo} alt="" />
-        </div>
-        <span className="nav-title text-white pt-6 font-bold">FITNESS GURU</span>
-
-        <div className="nav-links-container">
-          <ul
-            className={`${
-              isOpen ? "is-open" : ""
-            } flex-row gap-8 text-white pt-6 ml-30 nav-menu`}
-            style={{ fontSize: 17 }}
-          >
-            <li className="nav-links">
-              <a onClick={toggleMenu} href="#Home">
-                Home
-              </a>
-            </li>
-            <li className="nav-links">
-              <a onClick={toggleMenu} href="#About">
-                About
-              </a>
-            </li>
-            <li className="nav-links relative">
-              <a onClick={toggleMenu} href="#Classes">
-                Classes{" "}
-                <FontAwesomeIcon icon={faCaretDown} className="ml-1 text-white nav-links" />
-              </a>
-              <div className="dropdown-menu">
-                <ul>
-                  <li className="sub-links">
-                    <a onClick={toggleMenu} href="#Classes">
-                      Classes
-                    </a>
-                  </li>
-                  <li className="sub-links">
-                    <a onClick={toggleMenu} href="#Schedule">
-                      Class Schedule
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li className="nav-links">
-              <a onClick={toggleMenu} href="#Trainers">
-                Trainers
-              </a>
-            </li>
-            <li className="nav-links">
-              <a onClick={toggleMenu} href="#Events">
-                Events
-              </a>
-            </li>
-            <li className="nav-links">
-              <a onClick={toggleMenu} href="#Pricing">
-                Pricing
-              </a>
-            </li>
-            <li className="nav-links">
-              <a onClick={toggleMenu} href="#Blog">
-                Blog
-              </a>
-            </li>
-            <li className="nav-links">
-              <a onClick={toggleMenu} href="#Contact">
-                Contact
-              </a>
-            </li>
-          </ul>
-
-          <button id="menu-open-button" onClick={toggleMenu} className="menu-toggle">
-            <FontAwesomeIcon
-              icon={isOpen ? faTimes : faBars}
-              className="ml-55 mt-5 text-white nav-links"
-              color="white"
-            />
-          </button>
-        </div>
+ <div ref={containerRef} className="overflow-x-hidden">
+  {/* Navbar Container */}
+  <div
+    ref={navbarRef}
+    className={`fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-4 transition-all duration-300 navbar ${
+      scrolled ? "bg-[#262626]" : "bg-transparent"
+    }`}
+    style={{ transition: "transform 0.5s ease-in-out" }}
+  >
+    {/* Logo and Title */}
+    <div className="flex items-center gap-3 nav-title">
+      <div className="w-20">
+        <img src={assets.logo} alt="Logo" />
       </div>
+      <span className="text-white nav-title font-bold text-lg">FITNESS GURU</span>
     </div>
+
+    {/* Desktop Nav */}
+    <div className="nav-links-container hidden md:flex">
+      <ul className="nav-menu flex gap-8 text-white text-sm font-medium">
+        <li className="nav-links"><a href="#Home">Home</a></li>
+        <li className="nav-links"><a href="#About">About</a></li>
+        <li className="nav-links relative">
+          <a href="#Classes" className="flex items-center gap-1">
+            Classes <FontAwesomeIcon icon={faCaretDown} />
+          </a>
+          <div className="dropdown-menu">
+            <ul>
+              <li className="sub-links"><a href="#Classes">Classes</a></li>
+              <li className="sub-links"><a href="#Schedule">Class Schedule</a></li>
+            </ul>
+          </div>
+        </li>
+        <li className="nav-links"><a href="#Trainers">Trainers</a></li>
+        <li className="nav-links"><a href="#Events">Events</a></li>
+        <li className="nav-links"><a href="#Pricing">Pricing</a></li>
+        <li className="nav-links"><a href="#Blog">Blog</a></li>
+        <li className="nav-links"><a href="#Contact">Contact</a></li>
+      </ul>
+    </div>
+
+    {/* Hamburger / Close icon (Mobile) */}
+    <div className="md:hidden z-50">
+      <button onClick={toggleMenu} className="text-white text-2xl focus:outline-none">
+        <FontAwesomeIcon icon={isOpen ? faTimes : faBars} />
+      </button>
+    </div>
+  </div>
+
+  {/* Mobile Slide-in Menu */}
+  <div
+    ref={menuRef}
+    className={`fixed top-0 right-0 h-full w-2/3 max-w-xs bg-[#262626]/80 backdrop-blur-md text-white p-6 flex flex-col gap-8 transform transition-transform duration-500 ease-in-out ${
+      isOpen ? "translate-x-0" : "translate-x-full"
+    } md:hidden z-40 pt-35`}
+  >
+    <a onClick={toggleMenu} href="#Home" className="nav-links !text-[24px]">Home</a>
+    <a onClick={toggleMenu} href="#About" className="nav-links !text-[24px]">About</a>
+    <a onClick={toggleMenu} href="#Classes" className="nav-links !text-[24px]">Classes</a>
+    <a onClick={toggleMenu} href="#Schedule" className="nav-links !text-[24px]">Class Schedule</a>
+    <a onClick={toggleMenu} href="#Trainers" className="nav-links !text-[24px]">Trainers</a>
+    <a onClick={toggleMenu} href="#Events" className="nav-links !text-[24px]">Events</a>
+    <a onClick={toggleMenu} href="#Pricing" className="nav-links !text-[24px]">Pricing</a>
+    <a onClick={toggleMenu} href="#Blog" className="nav-links !text-[24px]">Blog</a>
+    <a onClick={toggleMenu} href="#Contact" className="nav-links !text-[24px]">Contact</a>
+  </div>
+</div>
+
   );
 };
 

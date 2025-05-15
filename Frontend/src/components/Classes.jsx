@@ -19,7 +19,7 @@ const Classes = () => {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 1.3, ease: 'easeOut' }}
             viewport={{ once: true, amount: 0.4 }}
-            className='flex justify-center'>
+            className='flex justify-center class-group-1 gap-7'>
                 <div className='class-box '>
                        <img src={assets.course9} className='course-img'  />
                      <div className='course-content'>
@@ -29,7 +29,7 @@ const Classes = () => {
 
                      </div>
                 </div>
-                <div className='class-box ml-10'>
+                <div className='class-box '>
                        <img src={assets.course2} className='course-img'  />
                      <div className='course-content'>
                            <h2>Weight Lifting</h2>
@@ -38,7 +38,7 @@ const Classes = () => {
 
                      </div>
                 </div>
-                <div className='class-box ml-10'>
+                <div className='class-box '>
                        <img src={assets.course3} className='course-img' id='gymnatics' />
                      <div className='course-content'>
                            <h2>Gymnastics</h2>
@@ -54,7 +54,7 @@ const Classes = () => {
                whileInView={{ y: 0, opacity: 1 }}
                transition={{ duration: 1.3, ease: 'easeOut' }}
                viewport={{ once: true, amount: 0.4 }}
-            className='flex mt-10 pb-20 justify-center'>
+            className='flex mt-10 pb-20 justify-center class-group-2 gap-7'>
             <div className='class-box '>
                        <img src={assets.course4} className='course-img'  />
                      <div className='course-content'>
@@ -64,7 +64,7 @@ const Classes = () => {
 
                      </div>
                 </div>
-                <div className='class-box ml-10'>
+                <div className='class-box '>
                        <img src={assets.course5} className='course-img'  />
                      <div className='course-content'>
                            <h2>Martial Arts</h2>
@@ -73,7 +73,7 @@ const Classes = () => {
 
                      </div>
                 </div>
-                <div className='class-box ml-10'>
+                <div className='class-box '>
                        <img src={assets.course7} className='course-img'  id='cardio'/>
                      <div className='course-content'>
                            <h2>Cardio</h2>

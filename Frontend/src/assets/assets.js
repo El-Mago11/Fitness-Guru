@@ -34,6 +34,7 @@ import globe from './globe.png'
 import location from './location.png'
 import contact from './contact.png'
 import paperPlane from './paper-plane.webp'
+import preLoader from './loader.svg'
 
 
 
@@ -76,6 +77,7 @@ export const assets={
     boxing,
     karate,
     aerobics,
+    preLoader,
 }
 
 export const colours ={
