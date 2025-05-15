@@ -39,7 +39,7 @@ const App = () => {
   }
 
   return (
-    <div className="app-wrapper fade-in">
+    <div className="app-wrapper overflow-x-hidden fade-in">
       <ToastContainer />
       <Navbar />
       <Home />

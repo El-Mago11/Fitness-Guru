@@ -101,19 +101,19 @@ const Navbar = () => {
   {/* Mobile Slide-in Menu */}
   <div
     ref={menuRef}
-    className={`fixed top-0 right-0 h-full w-2/3 max-w-xs bg-[#262626]/80 backdrop-blur-md text-white p-6 flex flex-col gap-8 transform transition-transform duration-500 ease-in-out ${
+    className={`fixed top-0 right-0 h-full w-2/3 max-w-xs bg-[#262626]/80 backdrop-blur-md text-white p-6 flex flex-col gap-6 transform transition-transform duration-500 ease-in-out ${
       isOpen ? "translate-x-0" : "translate-x-full"
     } md:hidden z-40 pt-35`}
   >
-    <a onClick={toggleMenu} href="#Home" className="nav-links !text-[24px]">Home</a>
-    <a onClick={toggleMenu} href="#About" className="nav-links !text-[24px]">About</a>
-    <a onClick={toggleMenu} href="#Classes" className="nav-links !text-[24px]">Classes</a>
-    <a onClick={toggleMenu} href="#Schedule" className="nav-links !text-[24px]">Class Schedule</a>
-    <a onClick={toggleMenu} href="#Trainers" className="nav-links !text-[24px]">Trainers</a>
-    <a onClick={toggleMenu} href="#Events" className="nav-links !text-[24px]">Events</a>
-    <a onClick={toggleMenu} href="#Pricing" className="nav-links !text-[24px]">Pricing</a>
-    <a onClick={toggleMenu} href="#Blog" className="nav-links !text-[24px]">Blog</a>
-    <a onClick={toggleMenu} href="#Contact" className="nav-links !text-[24px]">Contact</a>
+    <a onClick={toggleMenu} href="#Home" className="nav-links !text-[20px]">Home</a>
+    <a onClick={toggleMenu} href="#About" className="nav-links !text-[20px]">About</a>
+    <a onClick={toggleMenu} href="#Classes" className="nav-links !text-[20px]">Classes</a>
+    <a onClick={toggleMenu} href="#Schedule" className="nav-links !text-[20px]">Class Schedule</a>
+    <a onClick={toggleMenu} href="#Trainers" className="nav-links !text-[20px]">Trainers</a>
+    <a onClick={toggleMenu} href="#Events" className="nav-links !text-[20px]">Events</a>
+    <a onClick={toggleMenu} href="#Pricing" className="nav-links !text-[20px]">Pricing</a>
+    <a onClick={toggleMenu} href="#Blog" className="nav-links !text-[20px]">Blog</a>
+    <a onClick={toggleMenu} href="#Contact" className="nav-links !text-[20px]">Contact</a>
   </div>
 </div>
 

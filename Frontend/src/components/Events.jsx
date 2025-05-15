@@ -23,7 +23,12 @@ const Events = () => {
         <div className='flex flex-col justify-center items-center gap-10 md:gap-16 mt-6 w-full px-4'>
 
           {/* EVENT 1 */}
-          <motion.div className='event-box w-full'>
+          <motion.div 
+          initial={{ y: 80, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.3, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.4 }}
+          className='event-box w-full'>
             <div className='event-cards p-6 flex flex-col md:flex-row items-center gap-6 md:gap-10'>
               <div className='w-full md:w-1/3 flex-shrink-0 min-w-[200px]'>
                 <img src={assets.healthwalk} alt="Health Walk" className='w-full h-auto object-cover rounded' />
@@ -51,7 +56,13 @@ const Events = () => {
           </motion.div>
 
           {/* EVENT 2 */}
-          <motion.div className='event-box w-full'>
+          <motion.div
+          initial={{ y: 80, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.3, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.4 }}
+          
+          className='event-box w-full'>
             <div className='event-cards p-6 flex flex-col md:flex-row items-center gap-6 md:gap-10'>
               <div className='w-full md:w-1/3 flex-shrink-0 min-w-[200px]'>
                 <img src={assets.weightLifting} alt="Weight Lifting" className='w-full h-auto object-cover rounded' />
@@ -79,7 +90,13 @@ const Events = () => {
           </motion.div>
 
           {/* EVENT 3 */}
-          <motion.div className='event-box w-full'>
+          <motion.div 
+          initial={{ y: 80, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.3, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.4 }}
+          
+          className='event-box w-full'>
             <div className='event-cards p-6 flex flex-col md:flex-row items-center gap-6 md:gap-10'>
               <div className='w-full md:w-1/3 flex-shrink-0 min-w-[200px]'>
                 <img src={assets.soccer} alt="Games & Sports" className='w-full h-auto object-cover rounded' />
