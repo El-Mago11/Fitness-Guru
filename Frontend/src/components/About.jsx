@@ -1,6 +1,7 @@
 import React from 'react'
 import { assets } from '../assets/assets'
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 
 const About = () => {
@@ -30,7 +31,7 @@ const About = () => {
                both inside and outside the gym.
             </p>
 
-            <button className='btns mt-10'>Read More</button>
+              <Link to='/about-us'>             <button className='btns mt-10'>Read More</button></Link>
            </motion.div>
            <motion.div         
               initial={{ x: 100, opacity: 0 }}
